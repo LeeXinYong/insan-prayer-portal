@@ -1,0 +1,11 @@
+<p>Dear {{user_name}},</p>
+
+<p>Your account was logged in to {{domain_name}} from {{device}} near {{location}}.<br></p>
+
+<p>
+Date: {{date}}<br>
+IP address: {{ip_address}}<br>
+</p>
+
+<p>Is this you?</p>
+<p>If this is you, please click the "YES" below to set this as trusted device.<br>If this is not you, please click the "NO" below to revoke all your account sessions and reset your account password.</p>

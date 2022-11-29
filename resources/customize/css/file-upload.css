@@ -1,0 +1,49 @@
+
+.file-input .file-preview {
+    background: #F6F8FA;
+    border-style: dashed;
+}
+
+.file-input .file-preview:hover {
+    background: #e9eaee;
+}
+
+.file-input .file-drop-zone {
+    background: transparent;
+    border: none;
+}
+
+.file-input .file-drop-zone-title:before {
+    content: url("/demo3/customize/media/misc/file-upload.png");
+    display: block;
+}
+
+.file-input .file-drop-zone.clickable:hover {
+    border: none;
+}
+
+.file-input .file-drop-zone-title {
+    font-size: 1.075rem;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    line-height: 1.75em;
+}
+
+.file-input .file-preview-thumbnails {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.file-input input[type="file"] {
+    width: 0;
+}
+
+.cropper-container {
+    border-radius: 5px;
+    border: 1px dashed #ddd !important;
+}
+
+.cropper-wrap-box, .cropper-drag-box {
+    border-radius: 5px;
+}

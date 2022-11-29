@@ -1,0 +1,49 @@
+body.dragging,
+body.dragging * {
+    cursor: move !important;
+}
+
+.dragged {
+    position: absolute;
+    top: 0;
+    opacity: .5;
+    z-index: 2000;
+}
+
+ol.sortable {
+    margin: 0 0 9px 0;
+    min-height: 10px;
+}
+
+ol.sortable li {
+    padding-left: 1rem;
+}
+
+ol.sortable li:hover ,
+ol.sortable li a:hover {
+    cursor: move!important;
+}
+
+ol.sortable li.placeholder {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+ol.sortable li.placeholder:before {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    margin-top: -5px;
+    left: -5px;
+    top: -4px;
+    border: 5px solid transparent;
+    border-left-color: red;
+    border-right: none;
+}
+
+.title {
+    color: var(--primary);
+}

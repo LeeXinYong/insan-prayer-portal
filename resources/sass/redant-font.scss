@@ -1,0 +1,74 @@
+@font-face {
+    font-family: 'redant';
+    src: url('../customize/fonts/redant/redant.eot?12782724');
+    src: url('../customize/fonts/redant/redant.eot?12782724#iefix') format('embedded-opentype'),
+    url('../customize/fonts/redant/redant.woff2?12782724') format('woff2'),
+    url('../customize/fonts/redant/redant.woff?12782724') format('woff'),
+    url('../customize/fonts/redant/redant.ttf?12782724') format('truetype'),
+    url('../customize/fonts/redant/redant.svg?12782724#redant') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'redant';
+    src: url('../customize/fonts/redant/redant.svg?12782724#redant') format('svg');
+  }
+}
+
+[class^="ra-"]:before, [class*=" ra-"]:before {
+    font-family: redant !important;
+    font-style: normal;
+    font-weight: normal !important;
+    speak: never;
+    display: inline-block;
+    text-decoration: inherit;
+    font-variant: normal;
+    text-align: center;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    width: 1em;
+}
+
+.ra-banner:before { content: '\e800'; } /* 'î €' */
+.ra-coin-management:before { content: '\e801'; } /* 'î ' */
+.ra-dashboard:before { content: '\e802'; } /* 'î ‚' */
+.ra-faq-tips:before { content: '\e803'; } /* 'î ƒ' */
+.ra-members:before { content: '\e804'; } /* 'î „' */
+.ra-products:before { content: '\e805'; } /* 'î …' */
+.ra-promotion:before { content: '\e806'; } /* 'î †' */
+.ra-push-notification:before { content: '\e807'; } /* 'î ‡' */
+.ra-service-requests:before { content: '\e808'; } /* 'î ˆ' */
+.ra-email-solid:before { content: '\e809'; } /* 'î ‰' */
+.ra-add:before { content: '\e810'; } /* 'î •' */
+.ra-arrange:before { content: '\e811'; } /* 'î •' */
+.ra-settings:before { content: '\e80a'; } /* 'î Š' */
+.ra-survey:before { content: '\e80b'; } /* 'î ‹' */
+.ra-system:before { content: '\e80c'; } /* 'î Œ' */
+.ra-id-solid:before { content: '\e80d'; } /* 'î ' */
+.ra-user-management:before { content: '\e80e'; } /* 'î Ž' */
+.ra-services:before { content: '\e80f'; } /* 'î ' */
+.ra-back:before { content: '\e812'; } /* 'î ’' */
+.ra-voucher:before { content: '\e813'; } /* 'î “' */
+.ra-phone-solid:before { content: '\e814'; } /* 'î ”' */
+.ra-location-solid:before { content: '\e815'; } /* 'î •' */
+.ra-cancel:before { content: '\e816'; } /* 'î •' */
+.ra-complete:before { content: '\e817'; } /* 'î •' */
+.ra-continue:before { content: '\e818'; } /* 'î •' */
+.ra-delete:before { content: '\e819'; } /* 'î •' */
+.ra-edit:before { content: '\e81a'; } /* 'î •' */
+.ra-save:before { content: '\e81b'; } /* 'î •' */
+.ra-send:before { content: '\e81c'; } /* 'î •' */
+.ra-test:before { content: '\e81d'; } /* 'î •' */
+.ra-stepper-back:before { content: '\e81e'; } /* 'î •' */
+.ra-upload:before { content: '\e81f'; } /* 'î •' */
+.ra-mobile:before { content: '\e820'; } /* 'î •' */
+.ra-promotion-solid:before { content: '\e821'; } /* '' */
+.ra-voucher-solid:before { content: '\e822'; } /* '' */
+.ra-survey-solid:before { content: '\e823'; } /* '' */
+.ra-eye:before { content: '\e824'; } /* '' */
+.ra-eye-slash:before { content: '\e825'; } /* '' */

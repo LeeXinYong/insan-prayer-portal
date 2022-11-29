@@ -1,0 +1,11 @@
+<p>Dear {{user_name}},
+<br>
+<br>Welcome! Your Portal account for {{company}} has been registered as {{role}} and activated.
+<br>
+<br>Your login credentials are:
+<br>Login ID: <b>{{login_id}}</b>
+<br>Password: <b>{{login_password}}</b>
+<br>
+<br>Do note that in the interest of security and privacy, your login information should be kept personal and never shared with another party.
+<br>
+</p>

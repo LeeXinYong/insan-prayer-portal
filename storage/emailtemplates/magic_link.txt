@@ -1,0 +1,9 @@
+<p>Dear {{user_name}},
+<br>
+<br>Your magic link is ready. You can sign in into the portal by clicking on the Sign In Now button.
+<br>
+<br>Please note that the magic link will only be valid for 10 minutes.
+<br>
+<br>Do note that in the interest of security and privacy, your magic link should be kept personal and never shared with another party.
+<br>
+<br></p>

@@ -1,0 +1,9 @@
+<p>Dear {{user_name}},
+<br>
+<br>Your Portal account for {{company}} as {{role}} has been reactivated by the Admin.
+<br>
+<br>You will now regain access to the Portal effective immediately.
+<br>
+<br>Please do not hesitate to contact the person in charge if you have any questions.
+<br>
+</p>

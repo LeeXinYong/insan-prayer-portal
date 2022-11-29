@@ -1,0 +1,22 @@
+<p>Dear {{name}},
+    <br>
+    <br>A background job has failed to run. Following are the job details:
+    <br>
+</p>
+
+Job: <b>{{job_name}}</b><br>
+ID: <b>{{job_id}}</b> <br>
+Failed At: {{failed_at}} <br>
+Environment: {{environment}} <br><br>
+
+Payload:
+<pre style="font-family:'Courier New', monospace;font-size:9pt;color: #676767;">
+{{payload}}
+</pre>
+<br><br>
+
+Exception:
+<pre style="font-family:'Courier New', monospace;font-size:9pt;color: #676767;">
+{{exception}}
+</pre>
+<br>
