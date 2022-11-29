@@ -17,7 +17,7 @@ class UsersSeeder extends Seeder
      */
     public function run(Generator $faker)
     {
-        User::query()->truncate();
+        // User::query()->truncate();
 
         $userData = [[
             "name" => "Afif Zafri",
@@ -40,6 +40,12 @@ class UsersSeeder extends Seeder
         ],[
             "name" => "Lee Shu Jiun",
             "email" => "shujiun@redant.my",
+            "password" => bcrypt("abc123"),
+            "created_at" => now(),
+            "updated_at" => now(),
+        ],[
+            "name" => "Lee Xin Yong",
+            "email" => "xinyong@redant.my",
             "password" => bcrypt("abc123"),
             "created_at" => now(),
             "updated_at" => now(),

@@ -25,6 +25,7 @@ use App\Http\Controllers\TextController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\PrayerTimeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
@@ -200,6 +201,9 @@ Route::middleware(["auth", "verify_session"])->group(function () {
                 Route::get("system/download/{channel}/{file}", [SystemLogsController::class, "download"])->name("system.download");
             });
         });
+        
+        // Prayer Time pages
+        Route::resource("prayer_time", PrayerTimeController::class)->except(["show"]);
     });
 });
 

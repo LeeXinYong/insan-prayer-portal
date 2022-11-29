@@ -16,6 +16,7 @@ use App\Models\TestRecipient;
 use App\Models\FailedJobWebhook;
 use App\Models\User;
 use App\Models\Video;
+use App\Models\PrayerTime;
 use Spatie\Activitylog\Models\Activity;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -142,6 +143,10 @@ return [
         Guide::class => [
             "add" => ["arrange"],
             "except" => ["view"],
+        ],
+
+        PrayerTime::class => [
+            "except" => ["create", "delete"],
         ],
     ]
 ];
