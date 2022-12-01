@@ -1,11 +1,11 @@
 <x-base-layout>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
-    <x-slot name="page_title_slot">{{ __("prayer_time.page_title.index") }}</x-slot>
+    <x-slot name="page_title_slot">{{ __("zone.page_title.index") }}</x-slot>
 
     <div class="p-2">    
         <ol class="breadcrumb text-muted fs-6 fw-semibold">
             <li class="breadcrumb-item pe-3"><a href="{{ theme()->getPageUrl('') }}" class="pe-3">Dashboard</a></li>
-            <li class="breadcrumb-item pe-3 text-muted">Timeslot</li>
+            <li class="breadcrumb-item pe-3 text-muted">Zone</li>
         </ol>
     </div>
 
@@ -23,13 +23,13 @@
             <!--end::Card title-->
             <!--begin::Card toolbar-->
             <div class="card-toolbar gap-3">
-                @can("arrange", \App\Models\PrayerTime::class)
+                @can("arrange", \App\Models\Zone::class)
                     @include("pages.common-components.buttons.rearrange-items-buttons")
                 @endcan
 
-                @can("create", \App\Models\PrayerTime::class)
+                @can("create", \App\Models\Zone::class)
                     @include("pages.common-components.buttons.add-button", [
-                        "link" => route("prayer_time.create")
+                        "link" => route("zone.create")
                     ])
                 @endcan
             </div>
@@ -46,7 +46,7 @@
                 "img" => "/demo3/customize/media/empty-states/document.svg",
                 "message" => __("empty_states.default.content"),
                 "button_label" => __("empty_states.default.action"),
-                "url" => Auth::user()->cannotCreate(\App\Models\PrayerTimes::class) ? null : route("prayer_time.create")
+                "url" => Auth::user()->cannotCreate(\App\Models\Zones::class) ? null : route("zone.create")
             ])
         </div>
         <!--end::Card body-->

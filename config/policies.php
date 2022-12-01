@@ -17,6 +17,7 @@ use App\Models\FailedJobWebhook;
 use App\Models\User;
 use App\Models\Video;
 use App\Models\PrayerTime;
+use App\Models\Zone;
 use Spatie\Activitylog\Models\Activity;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -146,11 +147,11 @@ return [
         ],
 
         PrayerTime::class => [
-            "except" => ["create", "delete"],
+            "except" => ["create", "delete", "view"],
         ],
 
         Zone::class => [
-            "except" => ["create", "delete"],
+            "except" => ["view"],
         ],
     ]
 ];

@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\PrayerTime;
+use App\Models\State;
 use App\Models\Zone;
 use App\Services\DataTableRenderHelper;
 use Illuminate\Database\Eloquent\Builder;
@@ -12,9 +12,9 @@ use Yajra\DataTables\DataTableAbstract;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
-class PrayerTimesDataTable extends DataTable
+class ZonesDataTable extends DataTable
 {
-    public const TABLE_NAME = "prayer_time_table";
+    public const TABLE_NAME = "zone_table";
     /**
      * Build DataTable class.
      *
@@ -25,13 +25,18 @@ class PrayerTimesDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)            
-            ->rawColumns(["zone_id", "name", "gregorian_date", "imsak", "fajr", "syuruk", "dhuhr", "asr", "maghrib", "isha"])
-            ->addColumn("action", function (PrayerTime $model) {
+            ->rawColumns(["zone_id", "name", "state_name"])
+            ->addColumn("action", function (Zone $model) {
                 $actions = [
                     "edit" => [
-                        "url" => route("prayer_time.edit", ["prayer_time" => $model->prayer_id]),
+                        "url" => route("zone.edit", ["zone" => $model->zone_id]),
                         "label" => __("general.button.edit"),
-                        "disabled" => Auth::user()->cannotUpdate(PrayerTime::class)
+                        "disabled" => Auth::user()->cannotUpdate(Zone::class)
+                    ],
+                    "delete" => [
+                        "url" => route("zone.destroy", ["zone" => $model->zone_id]),
+                        "label" => __("general.button.delete"),
+                        "disabled" => Auth::user()->cannotDelete(Zone::class)
                     ]
                 ];
 
@@ -44,12 +49,12 @@ class PrayerTimesDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\PrayerTimesDataTable $model
+     * @param \App\Models\ZonesDataTable $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(PrayerTime $model): Builder
+    public function query(Zone $model): Builder
     {
-        return $model->newQuery()->join('zones', 'prayer_times.zone_id', '=', 'zones.zone_id')->select('prayer_times.*', 'zones.name')->where('gregorian_date', date("d-M-Y"));
+        return $model->newQuery()->join('states', 'zones.state_id', '=', 'states.state_id')->select('zones.*', 'states.name as state_name')->orderBy('zone_id');
     }
 
     /**
@@ -136,49 +141,16 @@ class PrayerTimesDataTable extends DataTable
     {
         return [
             Column::make('zone_id')
-                ->title( __("prayer_time.form_label.zone_id") )
-                ->name('prayer_times.zone_id'),
+                ->title( __("zone.form_label.zone_id") )
+                ->name('zones.zone_id')
+                ->orderable(false),
             Column::make('name')
-                ->title( __("prayer_time.form_label.name") )
-                ->name('zones.name'),
-            Column::make('gregorian_date')
-                ->title( __("prayer_time.form_label.gregorian_date") )
-                ->name('prayer_times.gregorian_date')
+                ->title( __("zone.form_label.name") )
+                ->name('zones.name')
                 ->orderable(false),
-            Column::make('imsak')
-                ->title( __("prayer_time.form_label.imsak") )
-                ->name('prayer_times.imsak')
-                ->searchable(false)
-                ->orderable(false),
-            Column::make('fajr')
-                ->title( __("prayer_time.form_label.fajr") )
-                ->name('prayer_times.fajr')
-                ->searchable(false)
-                ->orderable(false),
-            Column::make('syuruk')
-                ->title( __("prayer_time.form_label.syuruk") )
-                ->name('prayer_times.syuruk')
-                ->searchable(false)
-                ->orderable(false),
-            Column::make('dhuhr')
-                ->title( __("prayer_time.form_label.dhuhr") )
-                ->name('prayer_times.dhuhr')
-                ->searchable(false)
-                ->orderable(false),
-            Column::make('asr')
-                ->title( __("prayer_time.form_label.asr") )
-                ->name('prayer_times.asr')
-                ->searchable(false)
-                ->orderable(false),
-            Column::make('maghrib')
-                ->title( __("prayer_time.form_label.maghrib") )
-                ->name('prayer_times.maghrib')
-                ->searchable(false)
-                ->orderable(false),
-            Column::make('isha')
-                ->title( __("prayer_time.form_label.isha") )
-                ->name('prayer_times.isha')
-                ->searchable(false)
+            Column::make('state_name')
+                ->title( __("zone.form_label.state_name") )
+                ->name('states.name')
                 ->orderable(false),
             Column::computed("action")
                 ->title("Action")
@@ -194,8 +166,8 @@ class PrayerTimesDataTable extends DataTable
      *
      * @return string
      */
-    protected function filename(): string
+    protected function filename()
     {
-        return 'PrayerTimes_' . date('YmdHis');
+        return 'Zones_' . date('YmdHis');
     }
 }

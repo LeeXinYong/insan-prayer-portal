@@ -83,7 +83,11 @@ return [
         "regenerate_secret_key_failed_job_webhook" => "Regenerate Secret Key",
         "send_test_failed_job_webhook" => "Send Test Webhook",
         
-        "update_prayer_time" => "Update Time Slot",
+        "update_prayer_time" => "Update Timeslot",
+
+        "create_zone" => "Create New Zone",
+        "delete_zone" => "Delete Zone",
+        "update_zone" => "Update Zone",
     ],
     "module" => [
         "Banner" => "Banner",
@@ -101,5 +105,6 @@ return [
         "User" => "User",
         "Video" => "Video",
         "PrayerTime" => "Prayer Time",
+        "Zone" => "Zone",
     ]
 ];

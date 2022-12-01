@@ -52,6 +52,28 @@ class ValidationService
         }
 
         return match ("$model.$type") {
+            // Prayer Time validation rules
+            "prayer_time.edit" => [
+                "imsak" => "required|string|max:255",
+                "fajr" => "required|string|max:255",
+                "syuruk" => "required|string|max:255",
+                "dhuhr" => "required|string|max:255",
+                "asr" => "required|string|max:255",
+                "maghrib" => "required|string|max:255",
+                "isha" => "required|string|max:255"
+            ],
+
+            // Zone validation rules
+            "zone.create" => [
+                "zone_id" => "required|string|max:255|unique:zones",
+                "name" => "required|string|max:255",
+                "state_id" => "required|integer"
+            ],
+            "zone.edit" => [
+                "name" => "required|string|max:255",
+                "state_id" => "required|integer"
+            ],
+
             // Banner validation rules
             "banner.create" => [
                 "title" => "required|string|max:255",

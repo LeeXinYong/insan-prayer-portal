@@ -101,7 +101,7 @@ class PrayerTimeController extends SortableController
             $prayer_time->save();
 
             // Log Audit
-           LoggerController::log("prayer_time", $prayer_time, "audit_log.message.update_prayer_time", $prayer_time->title, $changes);
+           LoggerController::log("prayer_times", $prayer_time, "audit_log.message.update_prayer_time", $prayer_time->title, $changes);
 
             return response()->json([
                 "success" => __("prayer_time.message.success_update"),
