@@ -3,26 +3,42 @@
 namespace App\DataTables;
 
 use App\Models\PrayerTime;
-use Yajra\DataTables\Html\Button;
+use App\Models\Zone;
+use App\Services\DataTableRenderHelper;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\DataTableAbstract;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class PrayerTimesDataTable extends DataTable
 {
-    public const TABLE_NAME = "prayer_times";
+    public const TABLE_NAME = "prayer_time_table";
     /**
      * Build DataTable class.
      *
      * @param mixed $query Results from query() method.
      * @return \Yajra\DataTables\DataTableAbstract
      */
-    public function dataTable($query)
+    public function dataTable($query): DataTableAbstract
     {
         return datatables()
-            ->eloquent($query)
-            ->addColumn('action', 'prayertimesdatatable.action');
+            ->eloquent($query)            
+            ->rawColumns(["zone_id", "name", "gregorian_date", "imsak", "fajr", "syuruk", "dhuhr", "asr", "maghrib", "isha"])
+            ->addColumn("action", function (PrayerTime $model) {
+                $actions = [
+                    "edit" => [
+                        "url" => route("prayer_time.edit", ["prayer_time" => $model->prayer_id]),
+                        "label" => __("general.button.edit"),
+                        "disabled" => Auth::user()->cannotUpdate(PrayerTime::class)
+                    ]
+                ];
+
+                $forceDropdown = true;
+
+                return view("pages.common-components.buttons.action-menu-button", compact("actions", "forceDropdown"));
+            });
     }
 
     /**
@@ -31,9 +47,9 @@ class PrayerTimesDataTable extends DataTable
      * @param \App\Models\PrayerTimesDataTable $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(PrayerTime $model)
+    public function query(PrayerTime $model): Builder
     {
-        return $model->newQuery()->get();
+        return $model->newQuery()->join('zones', 'prayer_times.zone_id', '=', 'zones.zone_id')->select('prayer_times.*', 'zones.name')->where('gregorian_date', date("d-M-Y"))->orderBy('zone_id');
     }
 
     /**
@@ -41,21 +57,68 @@ class PrayerTimesDataTable extends DataTable
      *
      * @return \Yajra\DataTables\Html\Builder
      */
-    public function html()
+    public function html(): \Yajra\DataTables\Html\Builder
     {
         return $this->builder()
                     ->setTableId(self::TABLE_NAME)
                     ->columns($this->getColumns())
+                    ->orders([0, "asc"])
+                    ->pageLength(50)
+                    ->lengthMenu([
+                        [10, 25, 50, 100, -1],
+                        ["10", "25", "50", "100", __("general.message.all")]
+                    ])
                     ->minifiedAjax()
-                    ->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->buttons(
-                        Button::make('create'),
-                        Button::make('export'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    );
+                    ->stateSave(false)
+                    ->responsive()
+                    ->autoWidth(false)
+                    ->parameters([
+                    /*"drawCallback" => "function() {
+                            $('a, button, td.first-column').on('click', function() {
+                                event.stopPropagation();
+                            })
+                        }",
+                        */
+                        "rowCallback" => "function (row, data) {
+                            $(row).attr('data-id', data.id);
+                        }",
+                        "drawCallback" => "function() {
+                            KTMenu.createInstances();
+                            refreshFsLightbox();
+                            refreshDataTableRowRearrange('" . $this->builder()->getTableId() . "', this.api());
+        
+                            $('.view-content').on('click', function () {
+                                const data = window." . config("datatables-html.namespace", "LaravelDataTables") . "['" . $this->builder()->getTableId() . "'].row($(this).closest('tr')).data();
+                                const title = data['title'].split('<br/>')[0];
+                                const content = document.createElement('textarea');
+                                content.innerHTML = data['content'];
+        
+                                // set contents to iframe
+                                const iframe = document.getElementById('mobile_preview_content');
+                                const iframedoc = iframe.contentDocument || iframe.contentWindow.document;
+        
+                                // Put the content in the iframe
+                                iframedoc.open();
+                                iframedoc.writeln(`
+                                    <div class='container d-flex flex-column mb-25' style='text-align: center'>
+                                        <h1 class='my-10 font-weight-700 narrower' style='word-break: break-word; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; font-size: calc(1.3rem + 0.6vw); margin-top: 5px; margin-bottom: 5px;'>
+                                            ` + title + `
+                                        </h1>
+                                        <div style='text-align: left'>
+                                            <div class='pb-5 narrower' id='resource-content'>`+unescape(content.value)+`</div>
+                                        </div>
+                                    </div>
+                                `);
+                                iframedoc.close();
+        
+                                $('#mobile_preview_modal').modal('show');
+                            });
+        
+                            initDataTableEmptyState('" . $this->builder()->getTableId() . "', this.api());
+                        }",
+                        "dom" => "<'table-responsive'tr><'row'<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'li><'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>>",
+                    ])
+                    ->addTableClass("align-middle table-row-dashed fs-6 gy-5");
     }
 
     /**
@@ -63,26 +126,52 @@ class PrayerTimesDataTable extends DataTable
      *
      * @return array
      */
-    protected function getColumns()
+    protected function getColumns(): array
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('prayer_id'),
-            Column::make('state_id'),
-            Column::make('zone_id'),
-            Column::make('gregorian_date'),
-            Column::make('imsak'),
-            Column::make('fajr'),
-            Column::make('syuruk'),
-            Column::make('dhuhr'),
-            Column::make('asr'),
-            Column::make('maghrib'),
-            Column::make('isha'),
-            Column::make('updated_at'),
+            Column::make('zone_id')
+                ->title( __("prayer_time.form_label.zone_id") )
+                ->orderable(false),
+            Column::make('name')
+                ->title( __("prayer_time.form_label.name") )
+                ->orderable(false),
+            Column::make('gregorian_date')
+                ->title( __("prayer_time.form_label.gregorian_date") )
+                ->orderable(false),
+            Column::make('imsak')
+                ->title( __("prayer_time.form_label.imsak") )
+                ->searchable(false)
+                ->orderable(false),
+            Column::make('fajr')
+                ->title( __("prayer_time.form_label.fajr") )
+                ->searchable(false)
+                ->orderable(false),
+            Column::make('syuruk')
+                ->title( __("prayer_time.form_label.syuruk") )
+                ->searchable(false)
+                ->orderable(false),
+            Column::make('dhuhr')
+                ->title( __("prayer_time.form_label.dhuhr") )
+                ->searchable(false)
+                ->orderable(false),
+            Column::make('asr')
+                ->title( __("prayer_time.form_label.asr") )
+                ->searchable(false)
+                ->orderable(false),
+            Column::make('maghrib')
+                ->title( __("prayer_time.form_label.maghrib") )
+                ->searchable(false)
+                ->orderable(false),
+            Column::make('isha')
+                ->title( __("prayer_time.form_label.isha") )
+                ->searchable(false)
+                ->orderable(false),
+            Column::computed("action")
+                ->title("Action")
+                ->searchable(false)
+                ->orderable(false)
+                ->width("5%")
+                ->responsivePriority(-1),
         ];
     }
 
@@ -91,7 +180,7 @@ class PrayerTimesDataTable extends DataTable
      *
      * @return string
      */
-    protected function filename()
+    protected function filename(): string
     {
         return 'PrayerTimes_' . date('YmdHis');
     }

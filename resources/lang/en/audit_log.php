@@ -82,6 +82,8 @@ return [
         "delete_failed_job_webhook" => "Delete Failed Job Webhook",
         "regenerate_secret_key_failed_job_webhook" => "Regenerate Secret Key",
         "send_test_failed_job_webhook" => "Send Test Webhook",
+        
+        "update_prayer_time" => "Update Time Slot",
     ],
     "module" => [
         "Banner" => "Banner",
@@ -98,5 +100,6 @@ return [
         "TestRecipient" => "Test Recipient",
         "User" => "User",
         "Video" => "Video",
+        "PrayerTime" => "Prayer Time",
     ]
 ];

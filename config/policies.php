@@ -148,5 +148,9 @@ return [
         PrayerTime::class => [
             "except" => ["create", "delete"],
         ],
+
+        Zone::class => [
+            "except" => ["create", "delete"],
+        ],
     ]
 ];

@@ -66,4 +66,7 @@ return [
 
     "view_profile" => __("profile.page_title.view"),
     "change_password" => __("profile.page_title.change_password"),
+    
+    "prayer_time" => __("prayer_time.page_title.index"),
+    "edit_prayer_time" => __("prayer_time.page_title.edit"),
 ];

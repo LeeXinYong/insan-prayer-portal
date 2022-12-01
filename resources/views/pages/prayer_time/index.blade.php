@@ -1,5 +1,5 @@
 <x-base-layout>
-    <x-slot name="page_title_slot">{{ __("banner.page_title.index") }}</x-slot>
+    <x-slot name="page_title_slot">{{ __("prayer_time.page_title.index") }}</x-slot>
     <!--begin::Card-->
     <div class="card card-flush">
         <!--begin::Card header-->
@@ -12,19 +12,6 @@
                 </div>
             </div>
             <!--end::Card title-->
-            <!--begin::Card toolbar-->
-            <div class="card-toolbar gap-3">
-                @can("arrange", \App\Models\Banner::class)
-                    @include("pages.common-components.buttons.rearrange-items-buttons")
-                @endcan
-
-                @can("create", \App\Models\Banner::class)
-                    @include("pages.common-components.buttons.add-button", [
-                        "link" => route("banner.create")
-                    ])
-                @endcan
-            </div>
-            <!--end::Card toolbar-->
         </div>
         <!--end::Card header-->
         <!--begin::Card body-->
@@ -34,9 +21,9 @@
             @include("pages.common-components._empty-state-table", [
                 "table" => $dataTable->getTableId(),
                 "img" => "/demo3/customize/media/empty-states/document.svg",
-                "message" => __("empty_states.banner.content"),
-                "button_label" => __("empty_states.banner.action"),
-                "url" => Auth::user()->cannotCreate(\App\Models\Banner::class) ? null : route("banner.create")
+                "message" => __("empty_states.default.content"),
+                "button_label" => __("empty_states.default.action"),
+                "url" => Auth::user()->cannotCreate(\App\Models\PrayerTimes::class) ? null : route("prayer_time.create")
             ])
         </div>
         <!--end::Card body-->
@@ -47,6 +34,7 @@
 
     {{-- Inject Scripts --}}
     @push("scripts")
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
                 const table = window.{{ config("datatables-html.namespace", "LaravelDataTables") }}["{{ $dataTable->getTableId() }}"];
