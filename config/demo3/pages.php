@@ -31,6 +31,7 @@ return array(
                     "plugins/custom/datatables/datatables.bundle.css",
                     "customize/plugins/devicescss/assets/devices.min.css",
                     "customize/plugins/jquery-sortable/arrange-sequence.css",
+                    "assets/core/plugins/plugins.scss",
                 ),
                 "js" => array(
                     "plugins/custom/datatables/datatables.bundle.js",
@@ -38,6 +39,7 @@ return array(
                     "plugins/custom/fslightbox/fslightbox.bundle.js",
                     "customize/plugins/jquery-sortable/jquery-sortable.js",
                     "customize/js/initDataTableRowRearrange.js",
+                    "assets/core/plugins/plugins.js",
                 ),
             ),
         ),

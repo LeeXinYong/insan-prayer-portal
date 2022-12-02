@@ -49,7 +49,7 @@ class PrayerTimesDataTable extends DataTable
      */
     public function query(PrayerTime $model): Builder
     {
-        return $model->newQuery()->join('zones', 'prayer_times.zone_id', '=', 'zones.zone_id')->select('prayer_times.*', 'zones.name')->where('gregorian_date', date("d-M-Y"));
+        return $model->newQuery()->join('zones', 'prayer_times.zone_id', '=', 'zones.zone_id')->select('prayer_times.*', 'zones.name')->orderBy('gregorian_date');
     }
 
     /**
@@ -80,18 +80,18 @@ class PrayerTimesDataTable extends DataTable
                         }",
                         */
                         "rowCallback" => "function (row, data) {
-                            $(row).attr('data-id', data.id);
+                            $(row).attr('data-id', data.prayer_id);
                         }",
-                        "initComplete" => "function() {
-                            initDataTableRowRearrange('" . $this->builder()->getTableId() . "', this.api(), '" . route("banner.rearrange") . "');
-                            $('#" . $this->builder()->getTableId() . "').bind('DOMNodeInserted', function(e) {
-                                KTMenu.createInstances();
-                            });
-                        }",
+                        // "initComplete" => "function() {
+                        //     initDataTableRowRearrange('" . $this->builder()->getTableId() . "', this.api(), '" . route("banner.rearrange") . "');
+                        //     $('#" . $this->builder()->getTableId() . "').bind('DOMNodeInserted', function(e) {
+                        //         KTMenu.createInstances();
+                        //     });
+                        // }",
                         "drawCallback" => "function() {
                             KTMenu.createInstances();
                             refreshFsLightbox();
-                            refreshDataTableRowRearrange('" . $this->builder()->getTableId() . "', this.api());
+
         
                             $('.view-content').on('click', function () {
                                 const data = window." . config("datatables-html.namespace", "LaravelDataTables") . "['" . $this->builder()->getTableId() . "'].row($(this).closest('tr')).data();
@@ -137,47 +137,56 @@ class PrayerTimesDataTable extends DataTable
         return [
             Column::make('zone_id')
                 ->title( __("prayer_time.form_label.zone_id") )
-                ->name('prayer_times.zone_id'),
+                ->name('prayer_times.zone_id')
+                ->width("5%"),
             Column::make('name')
                 ->title( __("prayer_time.form_label.name") )
                 ->name('zones.name'),
             Column::make('gregorian_date')
                 ->title( __("prayer_time.form_label.gregorian_date") )
                 ->name('prayer_times.gregorian_date')
+                ->width("8%")
                 ->orderable(false),
             Column::make('imsak')
                 ->title( __("prayer_time.form_label.imsak") )
                 ->name('prayer_times.imsak')
+                ->width("8%")
                 ->searchable(false)
                 ->orderable(false),
             Column::make('fajr')
                 ->title( __("prayer_time.form_label.fajr") )
                 ->name('prayer_times.fajr')
+                ->width("8%")
                 ->searchable(false)
                 ->orderable(false),
             Column::make('syuruk')
                 ->title( __("prayer_time.form_label.syuruk") )
                 ->name('prayer_times.syuruk')
+                ->width("8%")
                 ->searchable(false)
                 ->orderable(false),
             Column::make('dhuhr')
                 ->title( __("prayer_time.form_label.dhuhr") )
                 ->name('prayer_times.dhuhr')
+                ->width("8%")
                 ->searchable(false)
                 ->orderable(false),
             Column::make('asr')
                 ->title( __("prayer_time.form_label.asr") )
                 ->name('prayer_times.asr')
+                ->width("8%")
                 ->searchable(false)
                 ->orderable(false),
             Column::make('maghrib')
                 ->title( __("prayer_time.form_label.maghrib") )
                 ->name('prayer_times.maghrib')
+                ->width("8%")
                 ->searchable(false)
                 ->orderable(false),
             Column::make('isha')
                 ->title( __("prayer_time.form_label.isha") )
                 ->name('prayer_times.isha')
+                ->width("8%")
                 ->searchable(false)
                 ->orderable(false),
             Column::computed("action")

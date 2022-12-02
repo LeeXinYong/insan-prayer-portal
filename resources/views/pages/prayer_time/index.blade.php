@@ -1,5 +1,10 @@
 <x-base-layout>
+    <?php 
+        $months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']; 
+    ?>
+
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <x-slot name="page_title_slot">{{ __("prayer_time.page_title.index") }}</x-slot>
 
     <div class="p-2">    
@@ -15,10 +20,55 @@
         <div class="card-header pt-6">
             <!--begin::Card title-->
             <div class="card-title">
-                <div class="d-flex align-items-center position-relative my-1">
-                    {!! theme()->getSvgIcon("icons/duotune/general/gen021.svg", "svg-icon-1 text-dark position-absolute ms-6") !!}
-                    <input type="text" name="dtSearch" id="dtSearch" class="form-control w-250px ps-15" placeholder="{{ __("general.message.search") }}">
+                <div class="row mt-10">
+                    <div class="d-flex align-items-center position-relative my-1 col-md-6">
+                        {!! theme()->getSvgIcon("icons/duotune/general/gen021.svg", "svg-icon-1 text-dark position-absolute ms-6") !!}
+                        <input type="text" name="dtSearch" id="dtSearch" class="form-control w-md-250px ps-15 mt-6 mb-6" placeholder="Search Zone..." />
+                        <input type="text" id="hidden_input" hidden />
+                    </div>
+                    <div class="col-md-6 row">
+                        <div class="col-12 row">
+                            <div class="card border-primary mb-3">
+                                <div class="row g-0">
+                                    <div class="col-2 position-relative">
+                                        <div class="form-check form-check-custom form-check-solid position-absolute top-50 start-50 translate-middle">
+                                            <input class="form-check-input radio-date" id="radio_d" type="radio" name="data_filter" checked="checked"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-10">
+                                        <div class="form-floating">
+                                            <input type="text" name="date" id="date" class="form-control search_date" placeholder="" value="{{ date('d-M-Y') }}" required/>
+                                            <label class="form-label" for="date">Date</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 row">
+                            <div class="card mb-3">
+                                <div class="row g-0">
+                                    <div class="col-2 position-relative">
+                                        <div class="form-check form-check-custom form-check-solid position-absolute top-50 start-50 translate-middle">
+                                            <input class="form-check-input radio-date" id="radio_m" type="radio" name="data_filter"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-10">
+                                        <div class="form-floating">
+                                            <select name="month" id="month" class="form-select" required disabled>
+                                                <option value="">{{ __("general.message.please_select") }}</option>
+                                                @foreach($months as $month)
+                                                    <option value="{{ $month }}" {{ $month == date('M') ? "selected" : "" }}>{{ $month }}</option>
+                                                @endforeach
+                                            </select>
+                                            <label class="form-label" for="month">Month</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
             <!--end::Card title-->
             <!--begin::Card toolbar-->
@@ -57,14 +107,66 @@
 
     {{-- Inject Scripts --}}
     @push("scripts")
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
         <script type="text/javascript">
             $(document).ready(function () {
-                const table = window.{{ config("datatables-html.namespace", "LaravelDataTables") }}["{{ $dataTable->getTableId() }}"];
+                const table = window.{{ config("datatables-html.namespace", "LaravelDataTables") }}["{{ $dataTable->getTableId() }}"]; 
 
                 $("#dtSearch").keyup(function () {
-                    table.search($(this).val()).draw();
+                    searchTimeslot();
                 });
+
+                function radio_change_events() {
+                    if (!$("#radio_d").is(":checked")) {
+                        $("#month").prop("disabled", false);
+                        $('#date').prop("disabled", true);
+                    }
+                    else if (!$("#radio_m").is(":checked")) {
+                        $("#month").prop("disabled", true);
+                        $('#date').prop("disabled", false);
+                    }
+                }
+
+                function readSearchStrings () {
+                    var zone = $('#dtSearch').val();
+                    var month_year = ($('#month').val() != '') ? $('#month').val() + '-2022' : '';
+                    var dt = ($("#radio_d").is(":checked")) ? $('#date').val() : month_year;
+                    var final_string = zone + ' ' + dt;
+                    $('#hidden_input').val(final_string);
+                }
+
+                function searchTimeslot () {
+                    readSearchStrings();
+                    table.search($('#hidden_input').val()).draw();
+                }
+
+                $(".search_date#date").flatpickr({
+                    dateFormat: "d-M-Y",
+                    onChange: function(selectedDates, dateStr, instance) {
+                        searchTimeslot();
+                    },
+                });
+
+                $("#month").select2({
+                    placeholder: "{{ __("general.message.please_select") }}",
+                    allowClear: false,
+                    width: '100%',
+                });
+
+                $("#month").on('change', function () {
+                    searchTimeslot();
+                });
+
+                $('.radio-date').on('click', function () {
+                    radio_change_events();
+                    searchTimeslot();
+                })
+
+                searchTimeslot();
+
+                radio_change_events();
             });
         </script>
     @endpush
