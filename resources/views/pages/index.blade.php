@@ -26,15 +26,21 @@
 
     <!--begin::Row-->
     <div class="row gy-5 gx-xl-8">
-        <!--begin::Col-->
+        {{-- <!--begin::Col-->
         <div class="col-xxl-4">
             {{ theme()->getView('partials/widgets/lists/_widget-3', array('class' => 'card-xxl-stretch mb-xl-3')) }}
         </div>
-        <!--end::Col-->
+        <!--end::Col--> --}}
 
-        <!--begin::Col-->
+        {{-- <!--begin::Col-->
         <div class="col-xl-8">
             {{ theme()->getView('partials/widgets/tables/_widget-9', array('class' => 'card-xxl-stretch mb-5 mb-xl-8')) }}
+        </div>
+        <!--end::Col--> --}}
+
+        <!--begin::Col-->
+        <div class="col-xl-12">
+            {{ theme()->getView('pages/prayer_time/index_dashboard', array('class' => 'card-xxl-stretch mb-5 mb-xl-8')) }}
         </div>
         <!--end::Col-->
     </div>

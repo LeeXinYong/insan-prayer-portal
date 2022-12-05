@@ -77,4 +77,8 @@ return [
     "credential" => __("credential.page_title.index"),
     "new_credential" => __("credential.page_title.create"),
     "edit_credential" => __("credential.page_title.edit"),
+
+    "ip_whitelist" => __("ip_whitelist.page_title.index"),
+    "new_ip_whitelist" => __("ip_whitelist.page_title.create"),
+    "edit_ip_whitelist" => __("ip_whitelist.page_title.edit"),
 ];

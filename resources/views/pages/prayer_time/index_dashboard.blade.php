@@ -89,15 +89,21 @@
         <!--begin::Card body-->
         <div class="card-body pt-6">
 
-            @include("pages.common-components._table")
+            <table class="table" id="prayer_time_datatable">
+                <thead>
+                    <th>Zone Code</th>
+                    <th>Zone</th>
+                    <th>Date</th>
+                    <th>IMSAK</th>
+                    <th>FAJR</th>
+                    <th>SYURUK</th>
+                    <th>DHUHR</th>
+                    <th>ASR</th>
+                    <th>MAGHRIB</th>
+                    <th>ISHA</th>
+                </thead>
+            </table>
 
-            @include("pages.common-components._empty-state-table", [
-                "table" => $dataTable->getTableId(),
-                "img" => "/demo3/customize/media/empty-states/document.svg",
-                "message" => __("empty_states.default.content"),
-                "button_label" => __("empty_states.default.action"),
-                "url" => Auth::user()->cannotCreate(\App\Models\PrayerTime::class) ? null : route("prayer_time.create")
-            ])
         </div>
         <!--end::Card body-->
     </div>
@@ -113,7 +119,24 @@
 
         <script type="text/javascript">
             $(document).ready(function () {
-                const table = window.{{ config("datatables-html.namespace", "LaravelDataTables") }}["{{ $dataTable->getTableId() }}"]; 
+
+                $('#prayer_time_datatable').DataTable({
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": {{ route('prayer_time.index_dashboard') }},
+                    "columns": [
+                        {"data": "zone_id"},
+                        {"data": "name"},
+                        {"data": "gregorian_date"},
+                        {"data": "imsak"},
+                        {"data": "fajr"},
+                        {"data": "syuruk"},
+                        {"data": "dhuhr"},
+                        {"data": "asr"},
+                        {"data": "maghrib"},
+                        {"data": "isha"},
+                    ]
+                });
 
                 $("#dtSearch").keyup(function () {
                     searchTimeslot();

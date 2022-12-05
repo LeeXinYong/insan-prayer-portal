@@ -2,12 +2,12 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
     <x-slot name="page_title_slot">{{ __("credential.page_title.index") }}</x-slot>
 
-    <div class="p-2">    
+    {{-- <div class="p-2">    
         <ol class="breadcrumb text-muted fs-6 fw-semibold">
             <li class="breadcrumb-item pe-3"><a href="{{ theme()->getPageUrl('') }}" class="pe-3">Dashboard</a></li>
             <li class="breadcrumb-item pe-3 text-muted">Credential</li>
         </ol>
-    </div>
+    </div> --}}
 
     <!--begin::Card-->
     <div class="card card-flush">
@@ -46,7 +46,7 @@
                 "img" => "/demo3/customize/media/empty-states/document.svg",
                 "message" => __("empty_states.default.content"),
                 "button_label" => __("empty_states.default.action"),
-                "url" => Auth::user()->cannotCreate(\App\Models\Credentials::class) ? null : route("credential.create")
+                "url" => Auth::user()->cannotCreate(\App\Models\Credential::class) ? null : route("credential.create")
             ])
         </div>
         <!--end::Card body-->

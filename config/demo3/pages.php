@@ -180,6 +180,64 @@ return array(
         ),
     ),
 
+    "ip_whitelist" => array(
+        "title" => "menu.ip_whitelist",
+        "assets" => array(
+            "custom" => array(
+                "css" => array(
+                    "plugins/custom/datatables/datatables.bundle.css",
+                    "customize/plugins/devicescss/assets/devices.min.css",
+                    "customize/plugins/jquery-sortable/arrange-sequence.css",
+                ),
+                "js" => array(
+                    "plugins/custom/datatables/datatables.bundle.js",
+                    "customize/js/initDataTableEmptyState.js",
+                    "plugins/custom/fslightbox/fslightbox.bundle.js",
+                    "customize/plugins/jquery-sortable/jquery-sortable.js",
+                    "customize/js/initDataTableRowRearrange.js",
+                ),
+            ),
+        ),
+        "create" => array(
+            "title" => "menu.new_ip_whitelist",
+            "assets" => array(
+                "custom" => array(
+                    "css" => array(
+                        "customize/plugins/bootstrap-fileinput/css/fileinput.min.css",
+                        "customize/plugins/devicescss/assets/devices.min.css",
+                        "customize/css/card-spacing.css",
+                        "customize/css/file-upload.css",
+                    ),
+                    "js" => array(
+                        "customize/plugins/bootstrap-fileinput/js/fileinput.min.js",
+                        "customize/plugins/tinymce/tinymce.bundle.js",
+                        "customize/js/file-upload.js",
+                        "customize/js/general.js",
+                    ),
+                ),
+            ),
+        ),
+        "edit" => array(
+            "title" => "menu.edit_ip_whitelist",
+            "assets" => array(
+                "custom" => array(
+                    "css" => array(
+                        "customize/plugins/bootstrap-fileinput/css/fileinput.min.css",
+                        "customize/plugins/devicescss/assets/devices.min.css",
+                        "customize/css/card-spacing.css",
+                        "customize/css/file-upload.css",
+                    ),
+                    "js" => array(
+                        "customize/plugins/bootstrap-fileinput/js/fileinput.min.js",
+                        "customize/plugins/tinymce/tinymce.bundle.js",
+                        "customize/js/file-upload.js",
+                        "customize/js/general.js",
+                    ),
+                ),
+            ),
+        ),
+    ),
+
     "banner" => array(
         "title" => "menu.banner",
         "assets" => array(

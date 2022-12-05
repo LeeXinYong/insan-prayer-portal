@@ -1,13 +1,13 @@
 <x-base-layout>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
-    <div class="p-2">    
+    {{-- <div class="p-2">    
         <ol class="breadcrumb text-muted fs-6 fw-semibold">
             <li class="breadcrumb-item pe-3"><a href="{{ theme()->getPageUrl('') }}" class="pe-3">Dashboard</a></li>
             <li class="breadcrumb-item pe-3"><a href="javascript:history.back()" class="pe-3">Timeslot</a></li>
             <li class="breadcrumb-item pe-3 text-muted">Edit</li>
         </ol>
-    </div>
+    </div> --}}
     <x-slot name="page_title_slot">{{ __("prayer_time.page_title.edit") }}</x-slot>
     <!--begin::Form-->
     <form method="post" id="edit_prayer_time_form" action="{{ route("prayer_time.update", ["prayer_time" => $prayer_time->prayer_id]) }}" enctype="multipart/form-data">

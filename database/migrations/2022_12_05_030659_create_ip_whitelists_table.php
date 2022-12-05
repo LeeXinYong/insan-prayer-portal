@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('ip_whitelists', function (Blueprint $table) {
-            $table->string('ip_addresses')->primary();
+            $table->string('ip_address')->primary();
             $table->timestamp('created_at');
             $table->string('ip_description');
         });

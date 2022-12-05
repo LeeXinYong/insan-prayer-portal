@@ -28,6 +28,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PrayerTimeController;
 use App\Http\Controllers\ZoneController;
 use App\Http\Controllers\CredentialController;
+use App\Http\Controllers\IpWhitelistController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
@@ -212,6 +213,9 @@ Route::middleware(["auth", "verify_session"])->group(function () {
         
         // Credential pages
         Route::resource("credential", CredentialController::class);
+        
+        // Credential pages
+        Route::resource("ip_whitelist", IpWhitelistController::class);
     });
 });
 

@@ -1,11 +1,11 @@
 <x-base-layout>
-    <div class="p-2">    
+    {{-- <div class="p-2">    
         <ol class="breadcrumb text-muted fs-6 fw-semibold">
             <li class="breadcrumb-item pe-3"><a href="{{ theme()->getPageUrl('') }}" class="pe-3">Dashboard</a></li>
             <li class="breadcrumb-item pe-3"><a href="javascript:history.back()" class="pe-3">Zone</a></li>
             <li class="breadcrumb-item pe-3 text-muted">Edit</li>
         </ol>
-    </div>
+    </div> --}}
     <x-slot name="page_title_slot">{{ __("zone.page_title.edit") }}</x-slot>
     <!--begin::Form-->
     <form method="post" id="edit_zone_form" action="{{ route("zone.update", ["zone" => $zone->zone_id]) }}" enctype="multipart/form-data">

@@ -32,6 +32,10 @@ class PrayerTimeController extends SortableController
         return $dataTable->render("pages.prayer_time.index");
     }
 
+    public function index_dashboard() {
+        return Datatables::of(PrayerTime::query())->make(true);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

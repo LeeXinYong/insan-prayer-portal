@@ -23,66 +23,82 @@ return [
             "hide" => [Menu::class, "shouldHideModulesTag"]
         ],
 
-        // Banner
+        // Timeslot
         [
-            "title" => "menu.banner",
-            "path" => "banner.index",
-            "active_path" => ["banner.index"],
-            "icon" => "<i class='bi bi-image fs-3'></i>",
+            "title" => "menu.prayer_time",
+            "path" => "prayer_time.index",
+            "active_path" => ["prayer_time.index"],
+            "icon" => "<i class='bi bi-calendar-week-fill fs-3'></i>",
         ],
 
-        // Brochure
+        // Zone
         [
-            "title" => "menu.brochure",
-            "path" => "brochure.index",
-            "active_path" => ["brochure.index"],
-            "icon" => "<i class='bi bi-file-earmark-richtext fs-3'></i>",
+            "title" => "menu.zone",
+            "path" => "zone.index",
+            "active_path" => ["zone.index"],
+            "icon" => "<i class='bi bi-geo-alt-fill fs-3'></i>",
         ],
 
-        // News
-        [
-            "title" => "menu.news",
-            "path" => "news.index",
-            "active_path" => ["news.index"],
-            "icon" => "<i class='bi bi-newspaper fs-3'></i>",
-        ],
+        // // Banner
+        // [
+        //     "title" => "menu.banner",
+        //     "path" => "banner.index",
+        //     "active_path" => ["banner.index"],
+        //     "icon" => "<i class='bi bi-image fs-3'></i>",
+        // ],
 
-        // Notifications
-        [
-            "title" => "menu.notifications",
-            "icon" => "<i class='bi bi-bell fs-3'></i>",
-            "classes" => [
-                "item" => "menu-accordion"
-            ],
-            "attributes" => [
-                "data-kt-menu-trigger" => "click",
-            ],
-            "sub" => [
-                "class" => "menu-sub-accordion menu-active-bg",
-                "items" => [
-                    [
-                        "title" => "menu.push_notification",
-                        "path" => "notification.index",
-                        "active_path" => ["notification.index", "notification.create"],
-                        "bullet" => "<span class='bullet bullet-dot'></span>",
-                    ],
-                    [
-                        "title" => "menu.manage_test_recipient",
-                        "path" => "notification.testRecipients.index",
-                        "active_path" => ["notification.testRecipients.index"],
-                        "bullet" => "<span class='bullet bullet-dot'></span>",
-                    ],
-                ],
-            ],
-        ],
+        // // Brochure
+        // [
+        //     "title" => "menu.brochure",
+        //     "path" => "brochure.index",
+        //     "active_path" => ["brochure.index"],
+        //     "icon" => "<i class='bi bi-file-earmark-richtext fs-3'></i>",
+        // ],
 
-        // Video
-        [
-            "title" => "menu.video",
-            "path" => "video.index",
-            "active_path" => ["video.index"],
-            "icon" => "<i class='bi bi-youtube fs-3'></i>",
-        ],
+        // // News
+        // [
+        //     "title" => "menu.news",
+        //     "path" => "news.index",
+        //     "active_path" => ["news.index"],
+        //     "icon" => "<i class='bi bi-newspaper fs-3'></i>",
+        // ],
+
+        // // Notifications
+        // [
+        //     "title" => "menu.notifications",
+        //     "icon" => "<i class='bi bi-bell fs-3'></i>",
+        //     "classes" => [
+        //         "item" => "menu-accordion"
+        //     ],
+        //     "attributes" => [
+        //         "data-kt-menu-trigger" => "click",
+        //     ],
+        //     "sub" => [
+        //         "class" => "menu-sub-accordion menu-active-bg",
+        //         "items" => [
+        //             [
+        //                 "title" => "menu.push_notification",
+        //                 "path" => "notification.index",
+        //                 "active_path" => ["notification.index", "notification.create"],
+        //                 "bullet" => "<span class='bullet bullet-dot'></span>",
+        //             ],
+        //             [
+        //                 "title" => "menu.manage_test_recipient",
+        //                 "path" => "notification.testRecipients.index",
+        //                 "active_path" => ["notification.testRecipients.index"],
+        //                 "bullet" => "<span class='bullet bullet-dot'></span>",
+        //             ],
+        //         ],
+        //     ],
+        // ],
+
+        // // Video
+        // [
+        //     "title" => "menu.video",
+        //     "path" => "video.index",
+        //     "active_path" => ["video.index"],
+        //     "icon" => "<i class='bi bi-youtube fs-3'></i>",
+        // ],
 
         //// Admin
         [
@@ -94,174 +110,190 @@ return [
             "hide" => [Menu::class, "shouldHideAdminTag"]
         ],
 
-        // User Management
+        // Credential
         [
-            "title" => "menu.user_management",
-            "icon" => "<i class='bi bi-person fs-3'></i>",
-            "classes" => [
-                "item" => "menu-accordion"
-            ],
-            "attributes" => [
-                "data-kt-menu-trigger" => "click",
-            ],
-            "sub" => [
-                "class" => "menu-sub-accordion menu-active-bg",
-                "items" => [
-                    [
-                        "title" => "menu.users",
-                        "path" => "user.index",
-                        "active_path" => ["user.index"],
-                        "bullet" => "<span class='bullet bullet-dot'></span>",
-                    ],
-                    [
-                        "title" => "menu.roles",
-                        "path" => "role.index",
-                        "active_path" => ["role.index"],
-                        "bullet" => "<span class='bullet bullet-dot'></span>",
-                    ],
-                    [
-                        "title" => "menu.permissions",
-                        "path" => "permission.index",
-                        "active_path" => ["permission.index"],
-                        "bullet" => "<span class='bullet bullet-dot'></span>",
-                    ],
-                ]
-            ]
+            "title" => "menu.credential",
+            "path" => "credential.index",
+            "active_path" => ["credential.index"],
+            "icon" => "<i class='bi bi-shield-shaded fs-3'></i>",
         ],
 
-        // System
+        // IP Whitelist
         [
-            "title" => "menu.system",
-            "icon" => "<i class='bi bi-laptop fs-3'></i>",
-            "classes" => ["item" => "menu-accordion"],
-            "attributes" => [
-                "data-kt-menu-trigger" => "click",
-            ],
-            "sub" => [
-                "class" => "menu-sub-accordion menu-active-bg",
-                "items" => [
-                    [
-                        "title" => "menu.settings",
-                        "bullet" => "<span class='bullet bullet-dot'></span>",
-                        "classes" => ["item" => "menu-accordion"],
-                        "attributes" => [
-                            "data-kt-menu-trigger" => "click",
-                        ],
-                        "sub" => [
-                            "class" => "menu-sub-accordion menu-active-bg",
-                            "items" => [
-                                [
-                                    "title" => "menu.general",
-                                    "path" => "system.settings.general.index",
-                                    "active_path" => ["system.settings.general.index"],
-                                    "bullet" => "<span class='bullet bullet-dot'></span>",
-                                ],
-                                [
-                                    "title" => "menu.email_server",
-                                    "path" => "system.settings.emailserver.index",
-                                    "active_path" => ["system.settings.emailserver.index"],
-                                    "bullet" => "<span class='bullet bullet-dot'></span>",
-                                ],
-                                [
-                                    "title" => "menu.email_template",
-                                    "path" => "system.settings.emailtemplate.index",
-                                    "active_path" => ["system.settings.emailtemplate.index"],
-                                    "bullet" => "<span class='bullet bullet-dot'></span>",
-                                ],
-                                [
-                                    "title" => "menu.failed_job_webhook",
-                                    "path" => "system.settings.failed_job_webhook.index",
-                                    "active_path" => ["system.settings.failed_job_webhook.index"],
-                                    "bullet" => "<span class='bullet bullet-dot'></span>",
-                                ],
-                            ],
-                        ],
-                    ],
-                    [
-                        "title" => "menu.logs",
-                        "bullet" => "<span class='bullet bullet-dot'></span>",
-                        "classes" => ["item" => "menu-accordion"],
-                        "attributes" => [
-                            "data-kt-menu-trigger" => "click",
-                        ],
-                        "sub" => [
-                            "class" => "menu-sub-accordion menu-active-bg",
-                            "items" => [
-                                [
-                                    "title" => "menu.audit_log",
-                                    "path" => "system.log.audit.index",
-                                    "active_path" => ["system.log.audit.index"],
-                                    "bullet" => "<span class='bullet bullet-dot'></span>",
-                                ],
-                                [
-                                    "title" => "menu.backup_log",
-                                    "path" => "system.log.backup.index",
-                                    "active_path" => ["system.log.backup.index"],
-                                    "bullet" => "<span class='bullet bullet-dot'></span>",
-                                ],
-                                [
-                                    "title" => "menu.changelog",
-                                    "path" => "system.log.changelog.index",
-                                    "active_path" => ["system.log.changelog.index"],
-                                    "bullet" => "<span class='bullet bullet-dot'></span>",
-                                ],
-                                [
-                                    "title" => "menu.download_log",
-                                    "path" => "system.log.download.index",
-                                    "active_path" => ["system.log.download.index"],
-                                    "bullet" => "<span class='bullet bullet-dot'></span>",
-                                ],
-                                [
-                                    "title" => "menu.failed_job_log",
-                                    "path" => "system.log.failed_job.index",
-                                    "active_path" => ["system.log.failed_job.index"],
-                                    "bullet" => "<span class='bullet bullet-dot'></span>",
-                                ],
-                                [
-                                    "title" => "menu.system_log",
-                                    "path" => "system.log.system.index",
-                                    "active_path" => ["system.log.system.index"],
-                                    "bullet" => "<span class='bullet bullet-dot'></span>",
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-            ],
+            "title" => "menu.ip_whitelist",
+            "path" => "ip_whitelist.index",
+            "active_path" => ["ip_whitelist.index"],
+            "icon" => "<i class='bi bi-geo-fill fs-3'></i>",
         ],
 
-        //// Support
-        [
-            "classes" => ["content" => "pt-8 pb-2"],
-            "content" => [
-                "label" => "menu.support",
-                "classes" => "menu-section text-muted text-uppercase fs-8 ls-1"
-            ],
-            "hide" => [Menu::class, "shouldHideSupportTag"]
-        ],
+        // // User Management
+        // [
+        //     "title" => "menu.user_management",
+        //     "icon" => "<i class='bi bi-person fs-3'></i>",
+        //     "classes" => [
+        //         "item" => "menu-accordion"
+        //     ],
+        //     "attributes" => [
+        //         "data-kt-menu-trigger" => "click",
+        //     ],
+        //     "sub" => [
+        //         "class" => "menu-sub-accordion menu-active-bg",
+        //         "items" => [
+        //             [
+        //                 "title" => "menu.users",
+        //                 "path" => "user.index",
+        //                 "active_path" => ["user.index"],
+        //                 "bullet" => "<span class='bullet bullet-dot'></span>",
+        //             ],
+        //             [
+        //                 "title" => "menu.roles",
+        //                 "path" => "role.index",
+        //                 "active_path" => ["role.index"],
+        //                 "bullet" => "<span class='bullet bullet-dot'></span>",
+        //             ],
+        //             [
+        //                 "title" => "menu.permissions",
+        //                 "path" => "permission.index",
+        //                 "active_path" => ["permission.index"],
+        //                 "bullet" => "<span class='bullet bullet-dot'></span>",
+        //             ],
+        //         ]
+        //     ]
+        // ],
 
-        // Support
-        [
-            "title" => "menu.support",
-            "icon" => "<i class='bi bi-question-circle fs-3'></i>",
-            "classes" => [
-                "item" => "menu-accordion"
-            ],
-            "attributes" => [
-                "data-kt-menu-trigger" => "click",
-            ],
-            "sub" => [
-                "class" => "menu-sub-accordion menu-active-bg",
-                "items" => [
-                    [
-                        "title" => "menu.guide",
-                        "path" => "guide.index",
-                        "active_path" => ["guide.index"],
-                        "bullet" => "<span class='bullet bullet-dot'></span>",
-                    ]
-                ]
-            ]
-        ],
+        // // System
+        // [
+        //     "title" => "menu.system",
+        //     "icon" => "<i class='bi bi-laptop fs-3'></i>",
+        //     "classes" => ["item" => "menu-accordion"],
+        //     "attributes" => [
+        //         "data-kt-menu-trigger" => "click",
+        //     ],
+        //     "sub" => [
+        //         "class" => "menu-sub-accordion menu-active-bg",
+        //         "items" => [
+        //             [
+        //                 "title" => "menu.settings",
+        //                 "bullet" => "<span class='bullet bullet-dot'></span>",
+        //                 "classes" => ["item" => "menu-accordion"],
+        //                 "attributes" => [
+        //                     "data-kt-menu-trigger" => "click",
+        //                 ],
+        //                 "sub" => [
+        //                     "class" => "menu-sub-accordion menu-active-bg",
+        //                     "items" => [
+        //                         [
+        //                             "title" => "menu.general",
+        //                             "path" => "system.settings.general.index",
+        //                             "active_path" => ["system.settings.general.index"],
+        //                             "bullet" => "<span class='bullet bullet-dot'></span>",
+        //                         ],
+        //                         [
+        //                             "title" => "menu.email_server",
+        //                             "path" => "system.settings.emailserver.index",
+        //                             "active_path" => ["system.settings.emailserver.index"],
+        //                             "bullet" => "<span class='bullet bullet-dot'></span>",
+        //                         ],
+        //                         [
+        //                             "title" => "menu.email_template",
+        //                             "path" => "system.settings.emailtemplate.index",
+        //                             "active_path" => ["system.settings.emailtemplate.index"],
+        //                             "bullet" => "<span class='bullet bullet-dot'></span>",
+        //                         ],
+        //                         [
+        //                             "title" => "menu.failed_job_webhook",
+        //                             "path" => "system.settings.failed_job_webhook.index",
+        //                             "active_path" => ["system.settings.failed_job_webhook.index"],
+        //                             "bullet" => "<span class='bullet bullet-dot'></span>",
+        //                         ],
+        //                     ],
+        //                 ],
+        //             ],
+        //             [
+        //                 "title" => "menu.logs",
+        //                 "bullet" => "<span class='bullet bullet-dot'></span>",
+        //                 "classes" => ["item" => "menu-accordion"],
+        //                 "attributes" => [
+        //                     "data-kt-menu-trigger" => "click",
+        //                 ],
+        //                 "sub" => [
+        //                     "class" => "menu-sub-accordion menu-active-bg",
+        //                     "items" => [
+        //                         [
+        //                             "title" => "menu.audit_log",
+        //                             "path" => "system.log.audit.index",
+        //                             "active_path" => ["system.log.audit.index"],
+        //                             "bullet" => "<span class='bullet bullet-dot'></span>",
+        //                         ],
+        //                         [
+        //                             "title" => "menu.backup_log",
+        //                             "path" => "system.log.backup.index",
+        //                             "active_path" => ["system.log.backup.index"],
+        //                             "bullet" => "<span class='bullet bullet-dot'></span>",
+        //                         ],
+        //                         [
+        //                             "title" => "menu.changelog",
+        //                             "path" => "system.log.changelog.index",
+        //                             "active_path" => ["system.log.changelog.index"],
+        //                             "bullet" => "<span class='bullet bullet-dot'></span>",
+        //                         ],
+        //                         [
+        //                             "title" => "menu.download_log",
+        //                             "path" => "system.log.download.index",
+        //                             "active_path" => ["system.log.download.index"],
+        //                             "bullet" => "<span class='bullet bullet-dot'></span>",
+        //                         ],
+        //                         [
+        //                             "title" => "menu.failed_job_log",
+        //                             "path" => "system.log.failed_job.index",
+        //                             "active_path" => ["system.log.failed_job.index"],
+        //                             "bullet" => "<span class='bullet bullet-dot'></span>",
+        //                         ],
+        //                         [
+        //                             "title" => "menu.system_log",
+        //                             "path" => "system.log.system.index",
+        //                             "active_path" => ["system.log.system.index"],
+        //                             "bullet" => "<span class='bullet bullet-dot'></span>",
+        //                         ],
+        //                     ],
+        //                 ],
+        //             ],
+        //         ],
+        //     ],
+        // ],
+
+        // //// Support
+        // [
+        //     "classes" => ["content" => "pt-8 pb-2"],
+        //     "content" => [
+        //         "label" => "menu.support",
+        //         "classes" => "menu-section text-muted text-uppercase fs-8 ls-1"
+        //     ],
+        //     "hide" => [Menu::class, "shouldHideSupportTag"]
+        // ],
+
+        // // Support
+        // [
+        //     "title" => "menu.support",
+        //     "icon" => "<i class='bi bi-question-circle fs-3'></i>",
+        //     "classes" => [
+        //         "item" => "menu-accordion"
+        //     ],
+        //     "attributes" => [
+        //         "data-kt-menu-trigger" => "click",
+        //     ],
+        //     "sub" => [
+        //         "class" => "menu-sub-accordion menu-active-bg",
+        //         "items" => [
+        //             [
+        //                 "title" => "menu.guide",
+        //                 "path" => "guide.index",
+        //                 "active_path" => ["guide.index"],
+        //                 "bullet" => "<span class='bullet bullet-dot'></span>",
+        //             ]
+        //         ]
+        //     ]
+        // ],
 
         // Separator
         /*[
@@ -278,6 +310,90 @@ return [
         [
             "title" => "menu.dashboard",
             "path" => "",
+        ],
+
+        // Timeslot
+        [
+            "title" => "menu.prayer_time",
+            "path" => "prayer_time.index",
+            "sub" => [
+                "items" => [
+                    [
+                        "title" => "menu.new_prayer_time",
+                        "path" => "prayer_time.create"
+                    ],
+                    [
+                        "title" => "menu.edit_prayer_time",
+                        "path" => "prayer_time.edit",
+                        "parameters" => [
+                            "prayer_time" => ".+",
+                        ],
+                    ]
+                ],
+            ]
+        ],
+
+        // Zone
+        [
+            "title" => "menu.zone",
+            "path" => "zone.index",
+            "sub" => [
+                "items" => [
+                    [
+                        "title" => "menu.new_zone",
+                        "path" => "zone.create"
+                    ],
+                    [
+                        "title" => "menu.edit_zone",
+                        "path" => "zone.edit",
+                        "parameters" => [
+                            "zone" => ".+",
+                        ],
+                    ]
+                ],
+            ]
+        ],
+
+        // Credential
+        [
+            "title" => "menu.credential",
+            "path" => "credential.index",
+            "sub" => [
+                "items" => [
+                    [
+                        "title" => "menu.new_credential",
+                        "path" => "credential.create"
+                    ],
+                    [
+                        "title" => "menu.edit_credential",
+                        "path" => "credential.edit",
+                        "parameters" => [
+                            "credential" => ".+",
+                        ],
+                    ]
+                ],
+            ]
+        ],
+
+        // IP Whitelist
+        [
+            "title" => "menu.ip_whitelist",
+            "path" => "ip_whitelist.index",
+            "sub" => [
+                "items" => [
+                    [
+                        "title" => "menu.new_ip_whitelist",
+                        "path" => "ip_whitelist.create"
+                    ],
+                    [
+                        "title" => "menu.edit_ip_whitelist",
+                        "path" => "ip_whitelist.edit",
+                        "parameters" => [
+                            "ip_whitelist" => ".+",
+                        ],
+                    ]
+                ],
+            ]
         ],
 
         // Banner

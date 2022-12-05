@@ -1,50 +1,38 @@
 <x-base-layout>
-    {{-- <div class="p-2">    
+    {{-- <div class="p-2">
         <ol class="breadcrumb text-muted fs-6 fw-semibold">
             <li class="breadcrumb-item pe-3"><a href="{{ theme()->getPageUrl('') }}" class="pe-3">Dashboard</a></li>
-            <li class="breadcrumb-item pe-3"><a href="javascript:history.back()" class="pe-3">Zone</a></li>
+            <li class="breadcrumb-item pe-3"><a href="javascript:history.back()" class="pe-3">IP Whitelist</a></li>
             <li class="breadcrumb-item pe-3 text-muted">Create New</li>
         </ol>
     </div> --}}
-    <x-slot name="page_title_slot">{{ __("zone.page_title.create") }}</x-slot>
+    <x-slot name="page_title_slot">{{ __("ip_whitelist.page_title.create") }}</x-slot>
     <!--begin::Form-->
-    <form method="post" id="create_zone_form" action="{{ route("zone.store") }}" enctype="multipart/form-data">
+    <form method="post" id="create_ip_whitelist_form" action="{{ route("ip_whitelist.store") }}" enctype="multipart/form-data">
         @csrf
         <!--begin::Card-->
         <div class="card">
             <div class="card-header align-items-center border-0 mt-4">
                 <h3 class="card-title align-items-start flex-column">
-                    <span class="fw-bolder mb-2 text-dark">Add New Zone</span>
+                    <span class="fw-bolder mb-2 text-dark">Add New IP Whitelist</span>
                 </h3>
             </div>
             <div class="card-body">
                 <div class="row mt-10">
                     <div class="col-12 form-floating">
-                        <input type="text" name="zone_id" id="zone_id" class="form-control" placeholder="{{ __("zone.form_label.zone_id") }}" required/>
-                        <label class="form-label" for="zone_id">{{ __("zone.form_label.zone_id") }}</label>
+                        <input type="text" name="ip_address" id="ip_address" class="form-control" placeholder="{{ __("ip_whitelist.form_label.ip_address") }}" required/>
+                        <label class="form-label" for="ip_address">{{ __("ip_whitelist.form_label.ip_address") }}</label>
                     </div>
                 </div>
                 <div class="row mt-10">
                     <div class="col-12 form-floating">
-                        <input type="text" name="name" id="name" class="form-control" placeholder="{{ __("zone.form_label.name") }}" required/>
-                        <label class="form-label" for="name">{{ __("zone.form_label.name") }}</label>
+                        <input type="text" name="ip_description" id="ip_description" class="form-control" placeholder="{{ __("ip_whitelist.form_label.ip_description") }}" required/>
+                        <label class="form-label" for="ip_description">{{ __("ip_whitelist.form_label.ip_description") }}</label>
                     </div>
                 </div>
-                <div class="row mt-10">
-                    <div class="col-12 form-floating">
-                        <select name="state_id" id="state_id" class="form-select" required>
-                            <option value="">{{ __("general.message.please_select") }}</option>
-                            @foreach($states as $state)
-                                <option value="{{ $state->state_id }}">{{ $state->name }}</option>
-                            @endforeach
-                        </select>
-                        <label class="form-label" for="state_id">{{ __("zone.form_label.state_name") }}</label>
-                    </div>
-                </div>
-
             </div>
             <div class="card-footer">
-                <div class="d-flex align-items-center @can("delete", \App\Models\Zone::class) justify-content-between @else justify-content-end @endcan gap-3">
+                <div class="d-flex align-items-center @can("delete", \App\Models\IpWhitelist::class) justify-content-between @else justify-content-end @endcan gap-3">
                     <div class="d-flex align-items-center justify-content-end gap-3">
                         @include("pages.common-components.buttons.cancel-button", [
                             "classes" => "btn-outline"
@@ -67,9 +55,9 @@
             $(document).ready(function() {
 
                 initFormSubmission(
-                    $("#create_zone_form"),
+                    $("#create_ip_whitelist_form"),
                     "{{ __("layout.spinner.saving") }}",
-                    "{{ __("zone.message.fail_update") }}"
+                    "{{ __("ip_whitelist.message.fail_update") }}"
                 );
 
                 $("#url_content_switch").click(function () {
@@ -82,12 +70,6 @@
                         $("#url").prop("required", false);
                         $("#content_section").show();
                     }
-                });
-
-                $("#state_id").select2({
-                    placeholder: "{{ __("general.message.please_select") }}",
-                    allowClear: false,
-                    width: '100%',
                 });
             });
         </script>
