@@ -27,6 +27,7 @@ use App\Http\Controllers\VideoController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PrayerTimeController;
 use App\Http\Controllers\ZoneController;
+use App\Http\Controllers\CredentialController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
@@ -208,6 +209,9 @@ Route::middleware(["auth", "verify_session"])->group(function () {
         
         // Zone pages
         Route::resource("zone", ZoneController::class);
+        
+        // Credential pages
+        Route::resource("credential", CredentialController::class);
     });
 });
 

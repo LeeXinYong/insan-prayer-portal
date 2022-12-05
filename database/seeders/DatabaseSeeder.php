@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             RolesSeeder::class,
             UsersSeeder::class,
             MakeAllUserSuperAdmin::class,
-            WorldSeeder::class,
+            // WorldSeeder::class,
             EmailTemplatesTableSeeder::class,
         ]);
     }

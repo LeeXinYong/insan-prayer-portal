@@ -73,4 +73,8 @@ return [
     "zone" => __("zone.page_title.index"),
     "new_zone" => __("zone.page_title.create"),
     "edit_zone" => __("zone.page_title.edit"),
+
+    "credential" => __("credential.page_title.index"),
+    "new_credential" => __("credential.page_title.create"),
+    "edit_credential" => __("credential.page_title.edit"),
 ];

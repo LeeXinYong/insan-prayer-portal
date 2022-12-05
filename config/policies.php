@@ -18,6 +18,7 @@ use App\Models\User;
 use App\Models\Video;
 use App\Models\PrayerTime;
 use App\Models\Zone;
+use App\Models\Credential;
 use Spatie\Activitylog\Models\Activity;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -151,6 +152,10 @@ return [
         ],
 
         Zone::class => [
+            "except" => ["view"],
+        ],
+
+        Credential::class => [
             "except" => ["view"],
         ],
     ]

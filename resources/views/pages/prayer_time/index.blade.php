@@ -108,6 +108,7 @@
     {{-- Inject Scripts --}}
     @push("scripts")
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/plug-ins/1.13.1/api/row().show().js"></script>
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
         <script type="text/javascript">
@@ -139,6 +140,11 @@
 
                 function searchTimeslot () {
                     readSearchStrings();
+                    // var new_row = {
+                    //     zone_id: 'WLY01'
+                    // };
+                    
+                    // table.row.add( new_row ).draw().show().draw(false);
                     table.search($('#hidden_input').val()).draw();
                 }
 

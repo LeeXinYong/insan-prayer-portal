@@ -74,6 +74,15 @@ class ValidationService
                 "state_id" => "required|integer"
             ],
 
+            // Credential validation rules
+            "credential.create" => [
+                "consumer_id" => "required|string|max:255|unique:credentials",
+                "signature" => "required|string|max:255"
+            ],
+            "credential.edit" => [
+                "signature" => "required|string|max:255"
+            ],
+
             // Banner validation rules
             "banner.create" => [
                 "title" => "required|string|max:255",
