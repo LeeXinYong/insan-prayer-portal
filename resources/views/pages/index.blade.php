@@ -1,6 +1,6 @@
 <x-base-layout>
 
-    <!--begin::Row-->
+    {{-- <!--begin::Row-->
     <div class="row gy-5 g-xl-8">
         <!--begin::Col-->
         <div class="col-xxl-4">
@@ -22,7 +22,7 @@
         </div>
         <!--end::Col-->
     </div>
-    <!--end::Row-->
+    <!--end::Row--> --}}
 
     <!--begin::Row-->
     <div class="row gy-5 gx-xl-8">
@@ -40,13 +40,13 @@
 
         <!--begin::Col-->
         <div class="col-xl-12">
-            {{ theme()->getView('pages/prayer_time/index_dashboard', array('class' => 'card-xxl-stretch mb-5 mb-xl-8')) }}
+            {{ theme()->getView('pages/prayer_time/dashboard', array('class' => 'card-xxl-stretch mb-5 mb-xl-8')) }}
         </div>
         <!--end::Col-->
     </div>
     <!--end::Row-->
 
-    <!--begin::Row-->
+    {{-- <!--begin::Row-->
     <div class="row gy-5 g-xl-8">
         <!--begin::Col-->
         <div class="col-xl-4">
@@ -82,6 +82,6 @@
         </div>
         <!--end::Col-->
     </div>
-    <!--end::Row-->
+    <!--end::Row--> --}}
 
 </x-base-layout>

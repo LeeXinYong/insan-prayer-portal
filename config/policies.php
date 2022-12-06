@@ -149,6 +149,7 @@ return [
         ],
 
         PrayerTime::class => [
+            "add" => ["dashboard"],
             "except" => ["create", "delete", "view"],
         ],
 

@@ -69,6 +69,7 @@ return [
     
     "prayer_time" => __("prayer_time.page_title.index"),
     "edit_prayer_time" => __("prayer_time.page_title.edit"),
+    "dashboard_prayer_time" => __("prayer_time.page_title.dashboard"),
 
     "zone" => __("zone.page_title.index"),
     "new_zone" => __("zone.page_title.create"),

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\PrayerTimesDataTable;
 use App\Models\PrayerTime;
+use App\Models\Zone;
 use App\Models\User;
 use App\Http\Requests\StripTagRequest as Request;
 use App\Services\ValidationService;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Carbon\Carbon;
+use DataTables;
 
 class PrayerTimeController extends SortableController
 {
@@ -32,8 +34,17 @@ class PrayerTimeController extends SortableController
         return $dataTable->render("pages.prayer_time.index");
     }
 
-    public function index_dashboard() {
-        return Datatables::of(PrayerTime::query())->make(true);
+    public function dashboard(Request $request) {        
+        if ($request->ajax()) {
+            $data = PrayerTime::join('zones', 'prayer_times.zone_id', '=', 'zones.zone_id')->select('prayer_times.*', 'zones.name')->where('gregorian_date', date('d-M-Y'))->orderBy('gregorian_date')->get();
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->make(true);
+        }
+        else {
+            $data = PrayerTime::join('zones', 'prayer_times.zone_id', '=', 'zones.zone_id')->select('prayer_times.*', 'zones.name')->orderBy('gregorian_date')->get();
+            return $data;
+        }
     }
 
     /**
@@ -43,7 +54,7 @@ class PrayerTimeController extends SortableController
      */
     public function create()
     {
-        //
+        
     }
 
     /**

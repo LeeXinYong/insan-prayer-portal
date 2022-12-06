@@ -4,7 +4,8 @@ return [
     // Page Title
     "page_title" => [
         "edit" => "Edit Timeslot",
-        "index" => "Timeslot"
+        "index" => "Timeslot",
+        "dashboard" => "Dashboard"
     ],
 
     // Message Collection

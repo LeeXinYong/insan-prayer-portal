@@ -206,7 +206,10 @@ Route::middleware(["auth", "verify_session"])->group(function () {
         });
         
         // Prayer Time pages
-        Route::resource("prayer_time", PrayerTimeController::class);
+        Route::resource("prayer_time", PrayerTimeController::class)->except(["show"]);
+        Route::prefix("prayer_time")->name("prayer_time.")->group(function () {
+            Route::get("dashboard", [PrayerTimeController::class, "dashboard"])->name("dashboard");
+        });
         
         // Zone pages
         Route::resource("zone", ZoneController::class);
